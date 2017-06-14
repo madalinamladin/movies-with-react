@@ -1,22 +1,13 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
-var movies = [
-	{title: 'Up', year: 2009},
-	{title: 'A Series of Unfortunate Events', year: 2004},
-	{title: 'The Prestige', year: 2006},
-	{title: 'Prometheus', year: 2012},
-	{title: 'Shrek', year: 2001},
-	{title: '50/50', year: 2011},
-	{title: 'Salt', year: 2010},
-    {title: 'World War Z', year: 2013},
-    {title: 'Life of Pi', year: 2012},
-    {title: 'Brokeback Mountain', year: 2005},
-    {title: 'Crouching Tiger, Hidden Dragon', year: 2000},
-    {title: 'The Wedding Banquet', year: 1993}
-  ];
+import m from './constants/Movies.js';
+import MovieRow from './components/MovieRow.jsx';
+import MoviesFilter from './components/MoviesFilter.jsx';
 
-  var moviesFiltered = [];
+var movies = m.data;
+
+var moviesFiltered = [];
 
 class App extends Component {
 
@@ -53,31 +44,9 @@ function filterMovies() {
 	 	moviesFiltered = movies;
 	 }
 	 ReactDOM.render(
-				    <Clock />,
+				    <MoviesFilter moviesFiltered={moviesFiltered}/>,
 				    document.getElementById('movies')
 				  );
-}
-
-class MovieRow extends React.Component {
-	   render() {
-	      return (
-	         <div className="movie">
-                  <div className="movie-name">{this.props.data.title}</div>
-                  <div className="movie-year">Year: {this.props.data.year}</div>
-             </div>
-	      );
-	   }
-	}
-
-
-class Clock extends React.Component {
-  render() {
-    return (
-      <div>
-        {moviesFiltered.map((movie, i) => <MovieRow key = {i} data = {movie} />)}
-      </div>
-    );
-  }
 }
 
 export default App;
